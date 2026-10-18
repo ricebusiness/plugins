@@ -1,5 +1,13 @@
 # Rice Business plugins for Claude Code
 
+This marketplace is archived. The tutor plugin now lives in
+[kerryback/kerryback-public](https://github.com/kerryback/kerryback-public):
+
+```
+/plugin marketplace add kerryback/kerryback-public
+/plugin install tutor@kerryback-public
+```
+
 The `ricebusiness` marketplace. It currently ships one plugin, `tutor`: a
 shared collection of tutoring skills that coach a student through a piece of
 course material one-on-one — the student produces the answers and Claude
@@ -23,10 +31,8 @@ update.
 | Command | Subject | Contributed by |
 |---|---|---|
 | `/tutor:binomial` | Binomial option pricing: replicating portfolios and no arbitrage, risk-neutral probabilities, multi-period backward induction, American options and early exercise | Kerry Back |
-| `/tutor:agency` | Agency and authority in business law: actual authority, apparent authority, ratification and estoppel, and who is liable on the contract | Kerry Back |
 
-Students can also just say what they want — "teach me the binomial model",
-"when is a company bound by what its manager signed" — and Claude picks the
+Students can also just say what they want — "teach me the binomial model" — and Claude picks the
 right tutor.
 
 ## Contributing a tutor
@@ -60,7 +66,7 @@ plugins/tutor/
 
 Everything ships as one plugin, `tutor`, because the plugin name is the command
 namespace: a skill in a plugin is invoked as `/<plugin>:<skill>`. One plugin
-holding many skills gives `/tutor:binomial` and `/tutor:agency`, where a plugin
+holding many skills gives `/tutor:binomial`, `/tutor:capm` and so on, where a plugin
 per subject would give `/binomial:binomial`.
 
 The version lives in `plugins/tutor/.claude-plugin/plugin.json`. The marketplace
