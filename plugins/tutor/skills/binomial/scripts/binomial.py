@@ -157,11 +157,15 @@ def node_label(t, i):
 
 
 def replication(stree, vtree, t, i, r):
-    """Shares (delta) and dollars in the bond that replicate the option here."""
+    """Shares (delta) and dollars in the bond that replicate holding the option
+    one more period.  At an early-exercise node this replicates the value of
+    holding, not the exercise value, since no portfolio pays the exercise value
+    in both successor states.
+    """
     su, sd = stree[t + 1][i], stree[t + 1][i + 1]
     vu, vd = vtree[t + 1][i], vtree[t + 1][i + 1]
     delta = (vu - vd) / (su - sd)
-    bond = vtree[t][i] - delta * stree[t][i]
+    bond = (vd - delta * sd) / (1 + r)
     return delta, bond
 
 

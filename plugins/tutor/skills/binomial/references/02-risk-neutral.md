@@ -123,9 +123,12 @@ Answer: `0.6(1.1 − d) = 1.02 − d` gives `d = 0.9`, so 90.
 
 Another good one: hold u and d fixed and raise r. Which way does q move, and
 which way does a call price move? (Both up. Ask them to explain the second one
-in terms of the replicating portfolio — a call is a leveraged stock position, and
-leverage is worth more when the borrowing is cheap. That is the honest
-explanation; "higher discount rate" is not.)
+in terms of the replicating portfolio. In a one-period tree delta does not
+depend on r, so the share position is the same. The borrowing is the difference: the hedge repays a fixed
+amount at date 1, 0.5·90 = 45 in the running example, and a higher r means that
+repayment supports less borrowing today. Less borrowed means more of your own
+money in the portfolio, so the call costs more. That is the honest explanation;
+"higher discount rate" is not.)
 
 ## 6. Check understanding
 

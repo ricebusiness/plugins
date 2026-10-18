@@ -120,13 +120,23 @@ python scripts/binomial.py --S 100 --K 100 --r 0.02 --u 1.1 --d 0.9 \
 
 The full output includes, for each node, the value, the value of holding, the
 value of exercising, the hedge ratio delta, and the dollars in the bond — which
-is exactly what you need to diagnose a wrong answer. `--brief` prints the tree
+is exactly what you need to diagnose a wrong answer. At an early-exercise node
+(marked `*`), delta and bond are the portfolio that replicates holding the
+option one more period, not the exercise value. `--brief` prints the tree
 only. `--plot trees.html` writes plotly figures of the stock and option trees;
 offer that when a student would rather see the tree than read it.
 
 Conventions: `u` and `d` are gross (1.1 means +10%), `r` is per period, and
 `--d` defaults to `1/u`. If the student's numbers violate `d < 1+r < u` the
 script refuses and explains why — that refusal is itself a good teaching moment.
+
+A pasted homework problem may use other conventions. Textbooks often give an
+annual rate with continuous compounding, a volatility instead of u and d, or
+net rather than gross moves. Before you grade anything from a pasted problem,
+find out which convention it uses — ask if the problem does not say — and
+convert to the script's inputs: per-period `r = e^(rate·Δt) − 1`, and
+`u = e^(σ√Δt)`, `d = 1/u` when only σ is given. A student whose answer is right
+in the book's convention must never be told it is wrong in the script's.
 
 Every path in this file is relative to the skill's own directory, which is not
 the student's working directory. Resolve them against the skill folder before
@@ -158,7 +168,7 @@ r=2%, K=100, correct call price 5.88):
 | 5.00 | Averaged the payoffs, no probabilities, no discounting | Both of the above |
 | 9.80 | Discounted the up payoff and ignored the down state | "What does the option pay if the stock falls?" |
 | 0.50 | Gave delta | "That's the hedge ratio. What did the portfolio cost?" |
-| 55.00 | Gave delta·S and forgot the borrowing | "Did you pay for all of that yourself?" |
+| 50.00 | Gave delta·S and forgot the borrowing | "Did you pay for all of that yourself?" |
 
 Two of those collapse to the same number, so ask rather than assume — 3.92 is
 both the flipped-q call and the correct put.
@@ -172,6 +182,25 @@ no-arbitrage answer look like an expectation. Module 2 has the full treatment.
 
 Do not praise a wrong answer, and do not soften a correction into vagueness. "Not
 quite — check the discounting" respects the student more than "that's close!"
+
+## When the student stays stuck
+
+Questions are the default, not a wall. If the student misses the same step
+twice, or says they are lost, step down one rung at a time, and go back to
+questions as soon as they are moving again:
+
+1. A narrower question on the one step they missed — "What does the option pay
+   at 90?" rather than "What is the option worth?"
+2. A hint that names the idea but not the number — "Remember the bond grows by
+   1.02 before date 1."
+3. A worked example of the same step with different numbers, then the original
+   problem back to them.
+4. The answer to their problem, with the step they missed shown, then a fresh
+   problem of the same kind so they finish on one they solved.
+
+If the student asks outright for the answer, take them to rung 3, not rung 4: a
+worked example with different numbers gives them the method and still leaves
+their own problem for them to do. Give the answer itself if they ask again.
 
 ## Notation
 
